@@ -7,8 +7,8 @@ pipeline {
         stage("Set up") {
             steps {
                 sh """
-                    sudo pip install molecule
-                    sudo pip install docker
+                    sudo pip3 install molecule
+                    sudo pip3 install docker
                 """
             } //steps
         } //stage
@@ -16,35 +16,35 @@ pipeline {
         stage("Create docker image for testing") {
             steps {
                 sh """
-                    python3 -m molecule create
+                    molecule create
                 """
             } //steps
         } //stage
         stage("Apply motd role to docker image") {
             steps {
                 sh """
-                    python3 -m molecule converge
+                    molecule converge
                 """
             } //steps
         } //stage
         stage("Check idempotency") {
             steps {
                 sh """
-                    python3 -m molecule idempotence
+                    molecule idempotence
                 """
             } //steps
         } //stage
         stage("Cleanup molecule") {
             steps {
                 sh """
-                    python3 -m molecule cleanup
+                    molecule cleanup
                 """
             } //steps
         } //stage
         stage("Destroy molecule instance") {
             steps {
                 sh """
-                    python3 -m molecule destroy
+                    molecule destroy
                 """
             } //steps
         } //stage
@@ -52,8 +52,8 @@ pipeline {
     post {
         always {
             sh """
-                sudo pip uninstall docker -y
-                sudo pip uninstall molecule -y
+                sudo pip3 uninstall docker -y
+                sudo pip3 uninstall molecule -y
             """
         }
     }
