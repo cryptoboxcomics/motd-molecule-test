@@ -20,7 +20,7 @@ pipeline {
                 """
             } //steps
         } //stage
-        stage("Apply Ansible role to docker image") {
+        stage("Apply motd role to docker image") {
             steps {
                 sh """
                     python3 -m molecule converge
