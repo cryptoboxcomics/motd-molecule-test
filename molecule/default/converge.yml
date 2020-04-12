@@ -4,4 +4,4 @@
   tasks:
     - name: "Include motd"
       include_role:
-        name: "motd-molecule-test"
+        name: "motd-test"
